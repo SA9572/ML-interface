@@ -602,12 +602,12 @@ def blog():
 
 # Prediction form route (GET)
 @app.route('/Prediction', methods=['GET'])
-def prediction_form():
+def prediction():
     return render_template('Prediction.html')
 
 # Prediction processing route (POST)
 @app.route('/Prediction', methods=['POST'])
-def predict():
+def prediction():
     logger.debug("Received predict request")
     try:
         tensile_strength = float(request.form['tensile_strength'])
@@ -645,4 +645,4 @@ def predict():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
